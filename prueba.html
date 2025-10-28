@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Página web moderna y responsive – plantilla base" />
+  <title>Mi Sitio — Plantilla</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌐</text></svg>">
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #121722;
+      --accent: #7c3aed;
+      --accent-2: #22d3ee;
+      --text: #e5e7eb;
+      --muted: #a3a3a3;
+      --ring: rgba(124, 58, 237, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html:focus-within { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(34,211,238,0.12), transparent 60%),
+                  radial-gradient(1000px 700px at -10% 20%, rgba(124,58,237,0.15), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in oklab, var(--panel) 86%, transparent);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+    .brand { display: inline-flex; align-items: center; gap: .6rem; font-weight: 700; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 999px; background: linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow: 0 0 0 6px var(--ring); }
+    .menu { display: flex; gap: 1rem; align-items: center; }
+    .menu a { color: var(--muted); font-weight: 500; }
+    .menu a:hover { color: var(--text); }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1rem; border-radius: .8rem; border: 1px solid rgba(255,255,255,0.08); background: #162032; }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0b0d12; border: none; font-weight: 700; }
+
+    /* Hero */
+    .hero { padding: 6rem 0 4rem; text-align: center; }
+    .eyebrow { color: var(--accent-2); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; }
+    .title { font-size: clamp(2rem, 6vw, 3.8rem); margin: .7rem 0; line-height: 1.1; }
+    .subtitle { color: var(--muted); font-size: clamp(1rem, 2.2vw, 1.15rem); max-width: 62ch; margin: 0 auto; }
+
+    .hero-cta { margin-top: 1.6rem; display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+
+    /* Feature grid */
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(12, 1fr); }
+    .card { grid-column: span 4; background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; padding: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .card h3 { margin: .2rem 0 .5rem; font-size: 1.15rem; }
+    .chip { display: inline-block; padding: .25rem .55rem; border-radius: 999px; background: rgba(124,58,237,0.14); border: 1px solid rgba(124,58,237,0.35); font-size: .75rem; color: #c4b5fd; }
+    .card p { color: var(--muted); font-size: .98rem; }
+
+    /* Section spacing */
+    section { padding: 3rem 0; }
+
+    /* Pricing */
+    .pricing { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .plan { background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; padding: 1.2rem; }
+    .price { font-size: 2rem; font-weight: 800; margin: .3rem 0 1rem; }
+
+    /* Footer */
+    footer { padding: 2.5rem 0; color: var(--muted); font-size: .95rem; border-top: 1px solid rgba(255,255,255,0.06); background: #0c111b; }
+    footer a { color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 900px) { .card { grid-column: span 6; } }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: repeat(6, 1fr); }
+      .card { grid-column: span 6; }
+      .menu { display: none; }
+      .menu.open { display: flex; flex-direction: column; gap: .6rem; position: absolute; left: 4%; right: 4%; top: 60px; background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 1rem; padding: .8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="principal">
+      <a class="brand" href="#inicio">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Mi Sitio</span>
+      </a>
+      <nav id="menu" class="menu" aria-label="secciones">
+        <a href="#caracteristicas">Características</a>
+        <a href="#precios">Precios</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn" href="#demo">Ver demo</a>
+      </nav>
+      <button id="burger" class="btn" aria-expanded="false" aria-controls="menu" aria-label="abrir menú" style="display:none">☰</button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero container">
+      <p class="eyebrow">PLANTILLA LISTA PARA USAR</p>
+      <h1 class="title">Crea una página moderna y responsive sin sufrir</h1>
+      <p class="subtitle">HTML limpio, un poco de CSS bonito y cero dependencias externas. Cambia el contenido y colores a tu gusto. Ideal para landing pages, proyectos personales o MVPs.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#contacto">Empezar</a>
+        <a class="btn" href="#caracteristicas">Más info</a>
+      </div>
+    </section>
+
+    <section id="caracteristicas" class="container">
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <span class="chip">Accesible</span>
+          <h3>Etiquetas semánticas</h3>
+          <p>Usa header, main, section y aria-labels para que lectores de pantalla no te odien.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="chip">Ligero</span>
+          <h3>Sin frameworks</h3>
+          <p>Menos dependencias, menos problemas. Todo en un solo archivo.</p>
+        </article>
+        <article class="card" role="listitem">
+          <span class="chip">Flexible</span>
+          <h3>Grid adaptable</h3>
+          <p>La cuadrícula responde desde 3 columnas a una, sin dramas ni media queries raras.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="precios" class="container">
+      <h2 style="margin-bottom: .6rem;">Precios</h2>
+      <div class="pricing" role="list">
+        <article class="plan" role="listitem" aria-labelledby="plan-basico">
+          <h3 id="plan-basico">Básico</h3>
+          <p class="price">$0</p>
+          <p>Ideal para pruebas y proyectos hobby. Incluye todo el HTML y buen karma.</p>
+          <a href="#contacto" class="btn">Elegir</a>
+        </article>
+        <article class="plan" role="listitem" aria-labelledby="plan-pro">
+          <h3 id="plan-pro">Pro</h3>
+          <p class="price">$12/mes</p>
+          <p>Para quienes realmente publican cosas. Incluye soporte imaginario 24/7.</p>
+          <a href="#contacto" class="btn primary">Elegir</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="container">
+      <h2 style="margin-bottom: .6rem;">Demo</h2>
+      <p class="subtitle">Sustituye este bloque con una galería, un embed o cualquier widget que te haga feliz.</p>
+    </section>
+
+    <section id="contacto" class="container">
+      <h2 style="margin-bottom: .6rem;">Contacto</h2>
+      <form class="grid" action="#" method="post" aria-label="formulario de contacto" onsubmit="event.preventDefault(); alert('Formulario enviado. Aquí va tu integración.');">
+        <label class="card" style="grid-column: span 6">
+          <span>Nombre</span>
+          <input name="nombre" required placeholder="Tu nombre" style="margin-top:.4rem; width:100%; padding:.7rem; border:1px solid rgba(255,255,255,0.15); border-radius:.6rem; background:#0f1420; color:var(--text)" />
+        </label>
+        <label class="card" style="grid-column: span 6">
+          <span>Email</span>
+          <input type="email" name="email" required placeholder="tu@email.com" style="margin-top:.4rem; width:100%; padding:.7rem; border:1px solid rgba(255,255,255,0.15); border-radius:.6rem; background:#0f1420; color:var(--text)" />
+        </label>
+        <label class="card" style="grid-column: span 12">
+          <span>Mensaje</span>
+          <textarea name="mensaje" rows="5" required placeholder="¿Qué necesitas?" style="margin-top:.4rem; width:100%; padding:.7rem; border:1px solid rgba(255,255,255,0.15); border-radius:.6rem; background:#0f1420; color:var(--text)"></textarea>
+        </label>
+        <div style="grid-column: span 12; display:flex; gap:.6rem; align-items:center;">
+          <input id="acepto" type="checkbox" required aria-required="true" />
+          <label for="acepto">Acepto la <a href="#" aria-label="abrir política de privacidad">política de privacidad</a>.</label>
+        </div>
+        <div style="grid-column: span 12;">
+          <button class="btn primary" type="submit">Enviar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+      <p>© <span id="y"></span> Mi Sitio. Todos los derechos reservados.</p>
+      <p>
+        <a href="#inicio">Volver arriba</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico y menú móvil sin complicaciones
+    document.getElementById('y').textContent = new Date().getFullYear();
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    // Mostrar botón burger en móviles
+    const mq = window.matchMedia('(max-width: 600px)');
+    function handleMQ(e){ burger.style.display = e.matches ? 'inline-flex' : 'none'; if(!e.matches){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); } }
+    mq.addEventListener('change', handleMQ); handleMQ(mq);
+    burger.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'cerrar menú' : 'abrir menú');
+    });
+  </script>
+</body>
+</html>
